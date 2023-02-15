@@ -6,11 +6,11 @@ import InlineBlock from './components/InlineBlock.js';
 import Keyboard from './components/Keyboard.js';
 import UpdateManager from './components/core/UpdateManager.js';
 import FontLibrary from './components/core/FontLibrary.js';
-import * as TextAlign from './utils/inline-layout/TextAlign';
-import * as Whitespace from './utils/inline-layout/Whitespace';
-import * as JustifyContent from './utils/block-layout/JustifyContent';
-import * as AlignItems from './utils/block-layout/AlignItems';
-import * as ContentDirection from './utils/block-layout/ContentDirection';
+import * as TextAlign from './utils/inline-layout/TextAlign.js';
+import * as Whitespace from './utils/inline-layout/Whitespace.js';
+import * as JustifyContent from './utils/block-layout/JustifyContent.js';
+import * as AlignItems from './utils/block-layout/AlignItems.js';
+import * as ContentDirection from './utils/block-layout/ContentDirection.js';
 
 const update = () => UpdateManager.update();
 

@@ -5,7 +5,7 @@ import FontLibrary from './FontLibrary.js';
 import UpdateManager from './UpdateManager.js';
 
 import DEFAULTS from '../../utils/Defaults.js';
-import { warnAboutDeprecatedAlignItems } from '../../utils/block-layout/AlignItems';
+import { warnAboutDeprecatedAlignItems } from '../../utils/block-layout/AlignItems.js';
 
 /**
 

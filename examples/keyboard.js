@@ -17,12 +17,12 @@ import ThreeMeshUI from '../src/three-mesh-ui.js';
 import VRControl from './utils/VRControl.js';
 import ShadowedLight from './utils/ShadowedLight.js';
 
-import FontJSON from './assets/Roboto-msdf.json';
-import FontImage from './assets/Roboto-msdf.png';
+const FontJSON = './assets/Roboto-msdf.json';
+const FontImage = './assets/Roboto-msdf.png';
 
-import Backspace from './assets/backspace.png';
-import Enter from './assets/enter.png';
-import Shift from './assets/shift.png';
+const Backspace = './assets/backspace.png';
+const Enter = './assets/enter.png';
+const Shift = './assets/shift.png';
 
 let scene,
 	camera,

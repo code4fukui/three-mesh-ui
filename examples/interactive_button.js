@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
+//import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
+import { ARButton as VRButton } from 'three/examples/jsm/webxr/ARButton.js';
 import { BoxLineGeometry } from 'three/examples/jsm/geometries/BoxLineGeometry.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
@@ -7,8 +8,8 @@ import ThreeMeshUI from '../src/three-mesh-ui.js';
 import VRControl from './utils/VRControl.js';
 import ShadowedLight from './utils/ShadowedLight.js';
 
-import FontJSON from './assets/Roboto-msdf.json';
-import FontImage from './assets/Roboto-msdf.png';
+const FontJSON = './assets/Roboto-msdf.json';
+const FontImage = './assets/Roboto-msdf.png';
 
 let scene, camera, renderer, controls, vrControl;
 let meshContainer, meshes, currentMesh;
@@ -62,11 +63,11 @@ function init() {
 	////////////////////////
 
 	scene = new THREE.Scene();
-	scene.background = new THREE.Color( 0x505050 );
+	//scene.background = new THREE.Color( 0x505050 );
 
 	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-	renderer = new THREE.WebGLRenderer( { antialias: true } );
+	renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.outputEncoding = THREE.sRGBEncoding;

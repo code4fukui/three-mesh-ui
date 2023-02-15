@@ -1,4 +1,4 @@
-import { ROW } from './ContentDirection';
+import { ROW } from './ContentDirection.js';
 
 
 export const START = "start";

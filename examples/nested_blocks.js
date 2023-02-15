@@ -1,13 +1,16 @@
 import * as THREE from "three";
-import { VRButton } from "three/examples/jsm/webxr/VRButton.js";
+import { ARButton } from "three/examples/jsm/webxr/ARButton.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { BoxLineGeometry } from "three/examples/jsm/geometries/BoxLineGeometry.js";
 
 import ThreeMeshUI from "../src/three-mesh-ui.js";
 
-import SnakeImage from "./assets/spiny_bush_viper.jpg";
-import FontJSON from "./assets/Roboto-msdf.json";
-import FontImage from "./assets/Roboto-msdf.png";
+//import SnakeImage from "./assets/spiny_bush_viper.jpg";
+//import FontJSON from "./assets/Roboto-msdf.json";
+//import FontImage from "./assets/Roboto-msdf.png";
+const SnakeImage = "./assets/spiny_bush_viper.jpg";
+const FontJSON = "./assets/Roboto-msdf.json";
+const FontImage = "./assets/Roboto-msdf.png";
 
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
@@ -21,15 +24,18 @@ window.addEventListener("resize", onWindowResize);
 
 function init() {
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x505050);
+  //scene.background = new THREE.Color(0x505050);
 
   camera = new THREE.PerspectiveCamera(60, WIDTH / HEIGHT, 0.1, 100);
 
-  renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(WIDTH, HEIGHT);
   renderer.xr.enabled = true;
-  document.body.appendChild(VRButton.createButton(renderer));
+  //const sessionInit = { optionalFeatures: [ 'local-floor', 'bounded-floor', 'hand-tracking', 'layers' ] };
+  //const sessionInit = { optionalFeatures: [ "local-floor", "bounded-floor" ] };
+  const sessionInit = {};
+  document.body.appendChild(ARButton.createButton(renderer, sessionInit));
   document.body.appendChild(renderer.domElement);
 
   controls = new OrbitControls(camera, renderer.domElement);
