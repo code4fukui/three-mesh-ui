@@ -9,7 +9,7 @@ For a better first step into this library, you should :
 */
 
 import * as THREE from 'three';
-import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
+import { ARButton } from 'three/examples/jsm/webxr/ARButton.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { BoxLineGeometry } from 'three/examples/jsm/geometries/BoxLineGeometry.js';
 
@@ -109,16 +109,16 @@ window.addEventListener( 'resize', onWindowResize );
 function init() {
 
 	scene = new THREE.Scene();
-	scene.background = new THREE.Color( 0x505050 );
+	//scene.background = new THREE.Color( 0x505050 );
 
 	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
 
-	renderer = new THREE.WebGLRenderer( { antialias: true } );
+	renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.outputEncoding = THREE.sRGBEncoding;
 	renderer.xr.enabled = true;
-	document.body.appendChild( VRButton.createButton( renderer ) );
+	document.body.appendChild( ARButton.createButton( renderer ) );
 	document.body.appendChild( renderer.domElement );
 	renderer.shadowMap.enabled = true;
 
@@ -154,14 +154,16 @@ function init() {
 
 	vrControl = VRControl( renderer, camera, scene );
 
-	scene.add( vrControl.controllerGrips[ 0 ], vrControl.controllers[ 0 ] );
+	const nctrl = 0; // todo: check 1
 
-	vrControl.controllers[ 0 ].addEventListener( 'selectstart', () => {
+	scene.add( vrControl.controllerGrips[nctrl], vrControl.controllers[nctrl] );
+
+	vrControl.controllers[nctrl].addEventListener( 'selectstart', () => {
 
 		selectState = true;
 
 	} );
-	vrControl.controllers[ 0 ].addEventListener( 'selectend', () => {
+	vrControl.controllers[nctrl].addEventListener( 'selectend', () => {
 
 		selectState = false;
 
@@ -183,7 +185,7 @@ function init() {
 		} )
 	);
 
-	scene.add( room, intersectionRoom );
+	//scene.add( room, intersectionRoom );
 	objsToTest.push( intersectionRoom );
 
 	// USER INTERFACE
@@ -567,14 +569,14 @@ function updateButtons() {
 
 	if ( renderer.xr.isPresenting ) {
 
-		vrControl.setFromController( 0, raycaster.ray );
+		vrControl.setFromController(0, raycaster.ray);
 
 		intersect = raycast();
 
 		if ( intersect ) console.log( intersect.point );
 
 		// Position the little white dot at the end of the controller pointing ray
-		if ( intersect ) vrControl.setPointerAt( 0, intersect.point );
+		if ( intersect ) vrControl.setPointerAt(0, intersect.point);
 
 	} else if ( mouse.x !== null && mouse.y !== null ) {
 
