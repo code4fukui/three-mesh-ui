@@ -1,71 +1,130 @@
 # three-mesh-ui
 
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/three-mesh-ui">
+    <img alt="NPM" src="https://img.shields.io/npm/v/three-mesh-ui.svg"/>
+  </a>
+  <a href="https://github.com/felixmariotto/three-mesh-ui/blob/master/LICENSE">
+    <img alt="MIT License" src="https://img.shields.io/github/license/felixmariotto/three-mesh-ui"/>
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://felixmariotto.github.io/three-mesh-ui/"><strong>Live Examples</strong></a>
+  &nbsp;|&nbsp;
+  <a href="https://www.npmjs.com/package/three-mesh-ui"><strong>NPM</strong></a>
+  &nbsp;|&nbsp;
+  <a href="https://github.com/felixmariotto/three-mesh-ui/wiki"><strong>Documentation</strong></a>
+  &nbsp;|&nbsp;
+  <a href="https://github.com/felixmariotto/three-mesh-ui/wiki/Roadmap-&-Contributions"><strong>Contributing</strong></a>
+</p>
+
+📢 **v7.x.x is in evaluation!** Check out the latest developments here: https://github.com/felixmariotto/three-mesh-ui/pull/223
+
 <a href="https://three-mesh-ui.herokuapp.com/#interactive_button">
-  <img alt="buttons example" target="_blank" src="https://felixmariotto.s3.eu-west-3.amazonaws.com/three-mesh-ui-teasers/buttons_opti.gif" width="45%">
+  <img alt="Interactive buttons with hover and select states" target="_blank" src="https://felixmariotto.s3.eu-west-3.amazonaws.com/three-mesh-ui-teasers/buttons_opti.gif" width="45%">
 </a>
-
 <a href="https://three-mesh-ui.herokuapp.com/#hidden_overflow">
-  <img alt="tuto example" target="_blank" src="https://felixmariotto.s3.eu-west-3.amazonaws.com/three-mesh-ui-teasers/hidden_overflow_opti.gif" width="45%">
+  <img alt="A text panel with scrolling and hidden overflow" target="_blank" src="https://felixmariotto.s3.eu-west-3.amazonaws.com/three-mesh-ui-teasers/hidden_overflow_opti.gif" width="45%">
 </a>
-
 <a href="https://three-mesh-ui.herokuapp.com/#nested_blocks">
-  <img alt="big text example" target="_blank" src="https://felixmariotto.s3.eu-west-3.amazonaws.com/three-mesh-ui-teasers/nested_layout_opti.gif" width="45%">
+  <img alt="A complex layout with nested containers and text alignment" target="_blank" src="https://felixmariotto.s3.eu-west-3.amazonaws.com/three-mesh-ui-teasers/nested_layout_opti.gif" width="45%">
 </a>
-
 <a href="https://three-mesh-ui.herokuapp.com/#keyboard">
-  <img alt="big text example" target="_blank" src="https://felixmariotto.s3.eu-west-3.amazonaws.com/three-mesh-ui-teasers/keyboard_opti.gif" width="45%">
+  <img alt="An interactive 3D keyboard for text input" target="_blank" src="https://felixmariotto.s3.eu-west-3.amazonaws.com/three-mesh-ui-teasers/keyboard_opti.gif" width="45%">
 </a>
 
-## [Examples (live)](https://felixmariotto.github.io/three-mesh-ui/) &nbsp;|	&nbsp;[NPM](https://www.npmjs.com/package/three-mesh-ui)	&nbsp;|	&nbsp;[Documentation](https://github.com/felixmariotto/three-mesh-ui/wiki)	&nbsp;|	&nbsp;[Contributing](https://github.com/felixmariotto/three-mesh-ui/wiki/Roadmap-&-Contributions)
+## What is it?
 
-📢 7.x.x is in evaluation, check it out here https://github.com/felixmariotto/three-mesh-ui/pull/223
+**three-mesh-ui** is a library for building user interfaces in VR/AR experiences. It is built on top of and for [three.js](https://threejs.org).
 
-# What is it ?
+Since it's impossible to use HTML/CSS to create user interfaces in a WebXR immersive session, this library was created to solve that problem. It provides a way to create 3D UIs that are themselves `THREE.Object3D` instances, ready to be added to any `THREE.Scene`.
 
-**three-mesh-ui** is a small library for building VR user interfaces. The objects it creates are [three.object3Ds](https://github.com/mrdoob/three.js/blob/dev/src/core/Object3D.js), usable directly in a [three.js](https://threejs.org) scene like any other Object3D.    
-        
-**It is not a framework**, but a minimalist library to be used with the last version of three.js. It has no dependency but three.js.
+It is not a framework, but a minimalist library with no dependency other than three.js.
 
-# Why ?
+## Features
 
-In a normal three.js workflow, the common practice is to build user interfaces with HTML/CSS.
+- **VR/AR Ready**: Builds UIs as `THREE.Object3D` instances, perfect for immersive environments.
+- **Declarative Layout**: Uses a Flexbox-like system with properties like `contentDirection`, `justifyContent`, and `alignItems` for easy and powerful layouts.
+- **Text and Font Support**: Renders crisp text using MSDF (Multi-channel Signed Distance Field) fonts. Supports word-wrapping, letter-spacing, and overflow control.
+- **Interactive Components**: Includes core components like `Block`, `Text`, and an interactive `Keyboard`.
+- **Styling**: Customize components with rounded corners, borders, and backgrounds with opacity control.
 
-In immersive VR, it is impossible, therefore this library was created.
+## Quick Start
 
-# Quick Start
+### Try it now
 
-## Try it now
+- **JSFiddle**: [Give it a try in this JSFiddle](https://jsfiddle.net/felixmariotto/y81rf5t2/44/)
+- **react-three-fiber**: [Here is a CodeSandbox to get started](https://codesandbox.io/s/react-three-mesh-ui-forked-v7n0b?file=/src/index.js)
 
-Give it a try in [this jsFiddle](https://jsfiddle.net/felixmariotto/y81rf5t2/44/)
+### Installation
 
-Using react-three-fiber ? Here is a [codesandbox](https://codesandbox.io/s/react-three-mesh-ui-forked-v7n0b?file=/src/index.js) to get started.
+```bash
+npm install three-mesh-ui
+```
+
+⚠️ `three` is a peer dependency.
+
+### Basic Usage
+
+```javascript
+import * as THREE from 'three';
+import ThreeMeshUI from 'three-mesh-ui';
+
+// In your scene creation
+const container = new ThreeMeshUI.Block({
+  width: 1.2,
+  height: 0.7,
+  padding: 0.05,
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontFamily: './assets/Roboto-msdf.json',
+  fontTexture: './assets/Roboto-msdf.png',
+});
+
+const text = new ThreeMeshUI.Text({
+  content: "Some text to be displayed",
+  fontSize: 0.055
+});
+
+container.add(text);
+scene.add(container);
+
+// In your render loop, before rendering the scene
+function animate() {
+  ThreeMeshUI.update();
+  renderer.render(scene, camera);
+}
+```
+
+### Font Files
+
+To display text, you need to provide MSDF font files (`.json` and `.png`). You can use the provided `Roboto-msdf` files in the [examples/assets directory](https://github.com/felixmariotto/three-mesh-ui/tree/master/examples/assets), or [create your own](https://github.com/felixmariotto/three-mesh-ui/wiki/Creating-your-own-fonts).
 
 ## Import
-### JSM
-#### With NPM 
-`npm install three-mesh-ui`
-*:warning: It requires three as peer dependency*
 
-##### ES6 ([codesandbox demo](https://codesandbox.io/s/npm-package-demo-2onzpo))
+### ES Modules (JSM)
+
+#### NPM
 
 ```javascript
-import ThreeMeshUI from 'three-mesh-ui'
+import ThreeMeshUI from 'three-mesh-ui';
 ```
 
-##### CommonJS   
-```javascript
-const ThreeMeshUI = require('three-mesh-ui');
-```
+#### HTML `<script>` tag
 
-##### HTML &lt;script&gt; tag ([codesandbox demo](https://codesandbox.io/s/module-build-demo-bkmfi8?file=/index.html:281-913))
+Use an import map to define the modules.
+
 ```html
- <!-- Defines the import map -->
+<!-- Defines the import map -->
 <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
 <script type="importmap">
 {
     "imports": {
-        "three": "https://unpkg.com/three@0.132.2/build/three.module.js",
-        "three-mesh-ui": "https://unpkg.com/three-mesh-ui@6.4.0/build/three-mesh-ui.module.js"
+        "three": "https://unpkg.com/three@0.144.0/build/three.module.js",
+        "three-mesh-ui": "https://unpkg.com/three-mesh-ui@6.5.3/build/three-mesh-ui.module.js"
     }
 }
 </script>
@@ -78,59 +137,31 @@ const ThreeMeshUI = require('three-mesh-ui');
     // code goes here ...
 </script>
 ```
-:muscle: *You can use the minified version named __three-mesh-ui.module.min.js__ ([codesandbox demo](https://codesandbox.io/s/module-build-demo-minified-pm6jwx))*
+*You can use the minified version `three-mesh-ui.module.min.js` for production.*
 
+### CommonJS / UMD (JS)
 
-### JS
-#### HTML &lt;script&gt; tag ([codesandbox demo](https://codesandbox.io/s/js-build-demo-061eku))
+#### Node.js
+
+```javascript
+const ThreeMeshUI = require('three-mesh-ui');
+```
+
+#### HTML `<script>` tag
+
 ```html
-<!-- As three-mesh-ui has a peer dependency on three.js -->
-<!-- Be sure to load three before three-mesh-ui -->
-<script src="https://unpkg.com/three@0.132.2/build/three.js"></script>
-
-<script src="https://unpkg.com/three-mesh-ui@6.4.1/build/three-mesh-ui.js"></script>
+<!-- Load three.js before three-mesh-ui -->
+<script src="https://unpkg.com/three@0.144.0/build/three.js"></script>
+<script src="https://unpkg.com/three-mesh-ui@6.5.3/build/three-mesh-ui.js"></script>
 
 <!-- Then we can code our app -->
 <script>
     /* global THREE, ThreeMeshUI */
-
     // code goes here ...
 </script>
 ```
-:muscle: *You can use the minified version named __three-mesh-ui.min.js__ ([codesandbox demo](https://codesandbox.io/s/js-build-demo-minified-onh8zi))*    
-:warning: *Although this would theorically allows you to build 'something', loading js libraries instead of using jsm, might restrict the global features you would have. This is true for both three and three-mesh-ui libraries.*
+*You can use the minified version `three-mesh-ui.min.js` for production.*
 
+## License
 
-## Font files
-
-In order to display some text with three-mesh-ui, you will need to provide font files.   
-You can use the two files named `Roboto-msdf` in [this directory](https://github.com/felixmariotto/three-mesh-ui/tree/master/examples/assets), or [create your own font files](https://github.com/felixmariotto/three-mesh-ui/wiki/Creating-your-own-fonts)
-
-## API
-
-Here is an example of basic three-mesh-ui usage : 
-
-```javascript
-const container = new ThreeMeshUI.Block({
- width: 1.2,
- height: 0.7,
- padding: 0.2,
- fontFamily: './assets/Roboto-msdf.json',
- fontTexture: './assets/Roboto-msdf.png',
-});
-
-//
-
-const text = new ThreeMeshUI.Text({
- content: "Some text to be displayed"
-});
-
-container.add( text );
-
-// scene is a THREE.Scene (see three.js)
-scene.add( container );
-
-// This is typically done in the render loop :
-ThreeMeshUI.update();
-```
-
+[MIT](https://github.com/felixmariotto/three-mesh-ui/blob/master/LICENSE)
